@@ -4,6 +4,9 @@ Plataforma web interativa para estudo de **listas simplesmente e duplamente enca
 
 O projeto foi desenvolvido como material de apoio ao estudo de **Estruturas de Dados**, transformando conceitos como `inicio`, `fim`, `proximo`, `anterior`, inserção, remoção e percurso em representações visuais e interativas.
 
+🌐 **Aplicação online:**  
+https://rafaelcsampaio.github.io/java-linked-list-lab/
+
 ---
 
 ## ✨ Funcionalidades
@@ -26,7 +29,7 @@ O projeto foi desenvolvido como material de apoio ao estudo de **Estruturas de D
 
 ## 🎯 Objetivo
 
-Listas encadeadas costumam ser difíceis de compreender apenas observando o código.
+Listas encadeadas podem ser difíceis de compreender apenas observando o código.
 
 Por exemplo:
 
@@ -40,7 +43,7 @@ Apesar de semelhantes, essas instruções realizam tarefas diferentes:
 - `fim.proximo = novoNo` cria uma ligação entre dois nós;
 - `fim = novoNo` altera a referência que representa o final da lista.
 
-O **Java Linked List Lab** permite visualizar essas alterações acontecendo em tempo real.
+O **Java Linked List Lab** permite visualizar essas alterações acontecendo passo a passo, tornando mais clara a relação entre código, referências e estado da estrutura.
 
 ---
 
@@ -67,6 +70,20 @@ null ← [Ana] ⇄ [Bruno] ⇄ [Carlos] → null
 ```
 
 Cada nó possui referências para o elemento anterior e para o próximo.
+
+---
+
+## 🧩 Simulador interativo
+
+O simulador permite visualizar operações comuns realizadas em listas encadeadas, como:
+
+- inserção de elementos;
+- remoção de elementos;
+- busca;
+- percurso da estrutura;
+- alteração das referências entre os nós.
+
+Os nós e suas conexões são atualizados visualmente durante cada operação, facilitando a compreensão do comportamento da estrutura.
 
 ---
 
@@ -108,7 +125,7 @@ inicio
 fim
 ```
 
-Isso aproxima a experiência de um **depurador educacional de estruturas de dados**.
+Isso aproxima a experiência de um **depurador educacional de estruturas de dados**, permitindo compreender não apenas qual linha está sendo executada, mas também como as referências mudam ao longo da execução.
 
 ---
 
@@ -143,6 +160,8 @@ ListaEncadeada<Aluno> alunos;
 - Lucide React
 - React Router
 - Java nos exemplos de estruturas de dados
+- GitHub Actions
+- GitHub Pages
 
 ---
 
@@ -188,13 +207,13 @@ Instale as dependências:
 npm install
 ```
 
-Execute:
+Execute o projeto:
 
 ```bash
 npm run dev
 ```
 
-Para verificar o código:
+Para verificar o código com ESLint:
 
 ```bash
 npm run lint
@@ -208,17 +227,21 @@ npm run build
 
 ---
 
-## 📚 Contexto
+## 🌐 Deploy
 
-O projeto foi desenvolvido como material educacional para auxiliar no aprendizado de **Estrutura de Dados**, especialmente na compreensão visual das referências utilizadas em listas encadeadas.
+A aplicação está publicada com **GitHub Pages**:
 
-A aplicação complementa a prática de implementação em Java, permitindo visualizar o comportamento das estruturas antes e durante a execução do código.
+https://rafaelcsampaio.github.io/java-linked-list-lab/
+
+O deploy é automatizado com **GitHub Actions**. Alterações enviadas para a branch `main` passam pelo processo de build e são publicadas automaticamente.
 
 ---
 
-## 🌐 Demonstração
+## 📚 Contexto acadêmico
 
-A versão online será disponibilizada em breve.
+O projeto foi desenvolvido como material educacional de apoio à disciplina de **Estrutura de Dados**, especialmente para auxiliar na compreensão visual de listas simplesmente e duplamente encadeadas.
+
+A proposta é complementar a implementação tradicional em Java com uma ferramenta que permita visualizar referências, nós, operações e fluxo de execução de forma interativa.
 
 ---
 
