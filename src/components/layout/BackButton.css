@@ -1,0 +1,58 @@
+.backButton {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 9px;
+
+    min-height: 44px;
+
+    padding: 0 16px;
+
+    background: rgba(255, 255, 255, 0.82);
+
+    border: 1.5px solid var(--border);
+    border-radius: 14px;
+
+    color: var(--text);
+
+    font-weight: 700;
+
+    box-shadow:
+        0 2px 6px rgba(41, 40, 57, 0.04),
+        0 8px 22px rgba(41, 40, 57, 0.06);
+
+    transition:
+        transform 160ms ease,
+        border-color 160ms ease,
+        background 160ms ease,
+        color 160ms ease,
+        box-shadow 160ms ease;
+}
+
+.backButton svg {
+    color: var(--primary);
+
+    transition: transform 160ms ease;
+}
+
+.backButton:hover {
+    transform: translateY(-1px);
+
+    background: white;
+
+    border-color: rgba(101, 88, 217, 0.45);
+
+    color: var(--primary);
+
+    box-shadow:
+        0 4px 8px rgba(41, 40, 57, 0.05),
+        0 10px 25px rgba(41, 40, 57, 0.09);
+}
+
+.backButton:hover svg {
+    transform: translateX(-2px);
+}
+
+.backButton:active {
+    transform: translateY(0);
+}

@@ -1,0 +1,636 @@
+.codePage {
+    min-height: 100vh;
+
+    padding: 35px 24px 80px;
+}
+
+.codeHeader {
+    max-width: 880px;
+
+    margin: 20px auto 0;
+
+    text-align: center;
+}
+
+.codeBadge {
+    display: inline-flex;
+
+    padding: 8px 15px;
+
+    background: var(--primary-light);
+    color: var(--primary);
+
+    border-radius: 999px;
+
+    font-weight: 700;
+}
+
+.codeHeader h1 {
+    margin: 20px 0 10px;
+
+    font-size: clamp(38px, 6vw, 58px);
+
+    letter-spacing: -2px;
+}
+
+.codeHeader > p {
+    max-width: 720px;
+
+    margin: auto;
+
+    color: var(--text-secondary);
+
+    font-size: 17px;
+    line-height: 1.6;
+}
+
+/* PRÁTICAS */
+
+.practiceSelector {
+    width: min(1250px, 100%);
+
+    margin: 38px auto 18px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 20px;
+
+    padding: 17px 20px;
+
+    background: white;
+
+    border: 2px solid var(--border);
+    border-radius: 17px;
+
+    box-shadow: var(--shadow-small);
+}
+
+.practiceSelector > div:first-child {
+    display: flex;
+    flex-direction: column;
+
+    gap: 3px;
+}
+
+.practiceSelector > div:first-child span {
+    color: var(--primary);
+
+    font-size: 11px;
+    font-weight: 800;
+
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+}
+
+.practiceSelector > div:first-child strong {
+    font-size: 15px;
+}
+
+.practiceButtons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+
+    gap: 7px;
+}
+
+.practiceButtons button {
+    padding: 9px 13px;
+
+    border: 2px solid var(--border);
+    border-radius: 10px;
+
+    background: #f8f7fc;
+    color: var(--text-secondary);
+
+    font-size: 12px;
+    font-weight: 700;
+
+    transition:
+        transform 150ms ease,
+        border-color 150ms ease,
+        background-color 150ms ease,
+        color 150ms ease;
+}
+
+.practiceButtons button:hover:not(:disabled) {
+    transform: translateY(-1px);
+
+    border-color: rgba(101, 88, 217, 0.45);
+
+    color: var(--primary);
+}
+
+.practiceButtons button.selected {
+    border-color: var(--primary);
+
+    background: var(--primary-light);
+    color: var(--primary);
+}
+
+.practiceButtons button:disabled {
+    opacity: 0.5;
+
+    cursor: not-allowed;
+}
+
+/* WORKSPACE */
+
+.codeWorkspace {
+    width: min(1250px, 100%);
+
+    margin: 0 auto;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.05fr)
+        minmax(400px, 0.95fr);
+
+    gap: 22px;
+
+    align-items: start;
+}
+
+.codeArea,
+.codeVisualization {
+    overflow: hidden;
+
+    background: white;
+
+    border: 2px solid var(--border);
+    border-radius: var(--radius-medium);
+
+    box-shadow: var(--shadow-small);
+}
+
+/* TOOLBAR */
+
+.codeToolbar {
+    min-height: 66px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 15px;
+
+    padding: 13px 17px;
+
+    border-bottom: 2px solid var(--border);
+}
+
+.codeFileName {
+    min-width: 0;
+
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    color: var(--text-secondary);
+}
+
+.codeFileName svg {
+    flex-shrink: 0;
+
+    color: var(--primary);
+}
+
+.codeFileName span {
+    overflow: hidden;
+
+    font-family:
+        Consolas,
+        monospace;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.codeToolbarActions {
+    display: flex;
+    align-items: center;
+
+    gap: 7px;
+}
+
+.codeToolbarActions button {
+    min-height: 37px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 6px;
+
+    padding: 8px 11px;
+
+    border: 2px solid var(--border);
+    border-radius: 9px;
+
+    background: white;
+    color: var(--text);
+
+    font-size: 11px;
+    font-weight: 700;
+
+    transition:
+        transform 150ms ease,
+        border-color 150ms ease,
+        background-color 150ms ease,
+        color 150ms ease,
+        box-shadow 150ms ease;
+}
+
+.codeToolbarActions button:hover:not(:disabled) {
+    transform: translateY(-1px);
+
+    border-color: rgba(101, 88, 217, 0.45);
+
+    background: var(--primary-light);
+    color: var(--primary);
+}
+
+.codeToolbarActions .runCodeButton {
+    border-color: var(--primary);
+
+    background: var(--primary);
+    color: white;
+}
+
+.codeToolbarActions .runCodeButton:hover:not(:disabled) {
+    background: #594bcc;
+
+    color: white;
+
+    box-shadow:
+        0 6px 15px
+        rgba(101, 88, 217, 0.2);
+}
+
+.codeToolbarActions button:disabled {
+    opacity: 0.42;
+
+    cursor: not-allowed;
+}
+
+/* DICA */
+
+.codeHint {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 11px 17px;
+
+    background: var(--yellow);
+
+    color: var(--text);
+
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+.codeHint svg {
+    flex-shrink: 0;
+}
+
+/* CÓDIGO */
+
+.javaCode {
+    max-height: 720px;
+
+    margin: 0;
+
+    padding: 14px 0 20px;
+
+    overflow: auto;
+
+    background: #292839;
+
+    scrollbar-color:
+        #5a566d
+        #292839;
+}
+
+.javaLine {
+    width: 100%;
+    min-height: 23px;
+
+    display: flex;
+    align-items: flex-start;
+
+    gap: 17px;
+
+    padding: 2px 17px;
+
+    border: none;
+
+    background: transparent;
+    color: #f4f2ff;
+
+    text-align: left;
+
+    font-family:
+        Consolas,
+        "Courier New",
+        monospace;
+
+    font-size: 13px;
+    line-height: 1.55;
+
+    white-space: pre;
+
+    transition:
+        background-color 110ms ease,
+        box-shadow 110ms ease;
+}
+
+.javaLine:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.07);
+}
+
+.javaLine.active {
+    background: rgba(101, 88, 217, 0.4);
+
+    box-shadow:
+        inset 4px 0
+        var(--primary);
+}
+
+.javaLine.nonInteractive {
+    cursor: default;
+}
+
+.javaLine.nonInteractive:hover {
+    background: transparent;
+}
+
+.javaLine:disabled {
+    opacity: 1;
+}
+
+.lineNumber {
+    width: 25px;
+
+    flex-shrink: 0;
+
+    color: #817d93;
+
+    text-align: right;
+
+    user-select: none;
+}
+
+.javaLine.active .lineNumber {
+    color: #c7c1ff;
+}
+
+.javaLine code {
+    font-family: inherit;
+    color: inherit;
+}
+
+/* VISUALIZAÇÃO */
+
+.codeVisualization {
+    position: sticky;
+
+    top: 20px;
+
+    padding: 23px;
+}
+
+.visualizationTitle {
+    display: flex;
+    flex-direction: column;
+
+    gap: 4px;
+}
+
+.visualizationTitle span {
+    color: var(--text-secondary);
+
+    font-size: 11px;
+    font-weight: 800;
+
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+}
+
+.visualizationTitle strong {
+    font-size: 20px;
+}
+
+.practiceVisualizer {
+    min-height: 310px;
+
+    margin: 20px 0 15px;
+
+    display: flex;
+    align-items: center;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(101, 88, 217, 0.05),
+            transparent 65%
+        ),
+        #f8f7fc;
+
+    border: 2px solid var(--border);
+    border-radius: 17px;
+}
+
+.practiceVisualizer .linkedListVisualizer {
+    padding-top: 70px;
+    padding-bottom: 50px;
+}
+
+/* INSPECTOR */
+
+.codeExplanation {
+    min-height: 120px;
+
+    display: flex;
+    align-items: flex-start;
+
+    gap: 12px;
+
+    padding: 17px;
+
+    background: var(--primary-light);
+
+    border: 2px solid #ddd7ff;
+    border-radius: 15px;
+}
+
+.codeExplanationIcon {
+    width: 37px;
+    height: 37px;
+
+    flex-shrink: 0;
+
+    display: grid;
+    place-items: center;
+
+    background: white;
+    color: var(--primary);
+
+    border-radius: 10px;
+}
+
+.codeExplanationContent {
+    min-width: 0;
+    width: 100%;
+}
+
+.codeExplanationLabel {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: var(--primary);
+
+    font-size: 11px;
+    font-weight: 800;
+
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+}
+
+.initialCodeMessage {
+    margin: 0;
+
+    color: var(--text-secondary);
+
+    font-size: 13px;
+    line-height: 1.55;
+}
+
+/* LEGENDA */
+
+.practiceLegend {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 15px;
+
+    margin-top: 13px;
+
+    color: var(--text-secondary);
+
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.practiceLegend > div {
+    display: flex;
+    align-items: center;
+
+    gap: 6px;
+}
+
+.legendDot {
+    width: 10px;
+    height: 10px;
+
+    display: inline-block;
+
+    border-radius: 50%;
+}
+
+.legendDot.active {
+    background: var(--primary);
+}
+
+.legendDot.new {
+    background: #83c995;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(131, 201, 149, 0.2);
+}
+
+/* RESPONSIVO */
+
+@media (max-width: 1050px) {
+    .codeWorkspace {
+        grid-template-columns: 1fr;
+    }
+
+    .codeVisualization {
+        position: static;
+
+        grid-row: 1;
+    }
+
+    .javaCode {
+        max-height: 600px;
+    }
+}
+
+@media (max-width: 760px) {
+    .practiceSelector {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .practiceButtons {
+        justify-content: flex-start;
+    }
+
+    .codeToolbar {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .codeToolbarActions {
+        width: 100%;
+
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .codeToolbarActions .runCodeButton {
+        grid-column: 1 / -1;
+    }
+
+    .codeToolbarActions button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    .codePage {
+        padding:
+            24px
+            14px
+            60px;
+    }
+
+    .codeVisualization {
+        padding: 17px;
+    }
+
+    .practiceVisualizer {
+        min-height: 280px;
+    }
+
+    .javaLine {
+        gap: 11px;
+
+        padding-inline: 11px;
+
+        font-size: 11px;
+    }
+}

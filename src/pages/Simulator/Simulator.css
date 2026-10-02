@@ -1,0 +1,562 @@
+.simulatorPage {
+    min-height: 100vh;
+    padding: 35px 24px 80px;
+}
+
+.simulatorHeader {
+    max-width: 850px;
+    margin: 20px auto 0;
+    text-align: center;
+}
+
+.simulatorBadge {
+    display: inline-flex;
+
+    padding: 8px 15px;
+
+    background: var(--primary-light);
+    color: var(--primary);
+
+    border-radius: 999px;
+
+    font-weight: 700;
+}
+
+.simulatorHeader h1 {
+    margin: 20px 0 10px;
+
+    font-size: clamp(38px, 6vw, 58px);
+
+    letter-spacing: -2px;
+}
+
+.simulatorHeader > p {
+    max-width: 680px;
+
+    margin: auto;
+
+    color: var(--text-secondary);
+
+    font-size: 17px;
+    line-height: 1.6;
+}
+
+.simulatorWorkspace {
+    width: min(1250px, 100%);
+
+    margin: 40px auto 0;
+
+    display: grid;
+
+    grid-template-columns:
+        290px
+        minmax(0, 1fr);
+
+    gap: 22px;
+}
+
+.operationPanel,
+.visualizerCard {
+    background: white;
+
+    border: 2px solid var(--border);
+    border-radius: var(--radius-medium);
+
+    box-shadow: var(--shadow-small);
+}
+
+/* PAINEL DE OPERAÇÕES */
+
+.operationPanel {
+    height: fit-content;
+
+    padding: 23px;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 18px;
+}
+
+.panelLabel {
+    color: var(--text-secondary);
+
+    font-size: 12px;
+    font-weight: 800;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+}
+
+.operationButtons {
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 8px;
+}
+
+.operationButtons button {
+    min-height: 45px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 7px;
+
+    padding: 9px;
+
+    border: 2px solid var(--border);
+    border-radius: 11px;
+
+    background: #f8f7fc;
+    color: var(--text);
+
+    font-size: 13px;
+    font-weight: 700;
+
+    transition:
+        transform 150ms ease,
+        border-color 150ms ease,
+        background-color 150ms ease,
+        color 150ms ease;
+}
+
+.operationButtons button:hover:not(:disabled) {
+    transform: translateY(-1px);
+
+    border-color:
+        rgba(101, 88, 217, 0.4);
+}
+
+.operationButtons button.selected {
+    border-color: var(--primary);
+
+    background: var(--primary-light);
+
+    color: var(--primary);
+}
+
+.operationButtons button.selected svg {
+    color: var(--primary);
+}
+
+.operationButtons button:disabled {
+    opacity: 0.55;
+
+    cursor: not-allowed;
+}
+
+.operationDescription {
+    padding: 14px;
+
+    background: #f8f7fc;
+
+    border: 1px solid var(--border);
+    border-radius: 12px;
+}
+
+.operationDescription strong {
+    font-size: 13px;
+}
+
+.operationDescription p {
+    margin: 5px 0 0;
+
+    color: var(--text-secondary);
+
+    font-size: 12px;
+    line-height: 1.45;
+}
+
+/* INPUTS */
+
+.operationPanel label {
+    display: flex;
+    flex-direction: column;
+
+    gap: 7px;
+
+    color: var(--text-secondary);
+
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.operationPanel label small {
+    font-size: 10px;
+    font-weight: 500;
+}
+
+.operationPanel input {
+    width: 100%;
+
+    padding: 12px;
+
+    border: 2px solid var(--border);
+    border-radius: 11px;
+
+    background: white;
+    color: var(--text);
+
+    outline: none;
+
+    transition:
+        border-color 150ms ease,
+        box-shadow 150ms ease,
+        background-color 150ms ease;
+}
+
+.operationPanel input:focus {
+    border-color: var(--primary);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(101, 88, 217, 0.1);
+}
+
+.operationPanel input.inputError {
+    border-color: #d6535e;
+
+    background: #fff8f8;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(214, 83, 94, 0.08);
+}
+
+.operationPanel input.inputError:focus {
+    border-color: #d6535e;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(214, 83, 94, 0.13);
+}
+
+.fieldErrorMessage {
+    display: flex;
+    align-items: center;
+
+    gap: 5px;
+
+    color: #b93d47;
+
+    font-size: 11px;
+    font-weight: 700;
+}
+
+/* EXECUTAR */
+
+.executeButton {
+    min-height: 47px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 9px;
+
+    padding: 13px;
+
+    border: none;
+    border-radius: 12px;
+
+    background: var(--primary);
+    color: white;
+
+    font-weight: 800;
+
+    transition:
+        transform 150ms ease,
+        box-shadow 150ms ease;
+}
+
+.executeButton:hover:not(:disabled) {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 18px
+        rgba(101, 88, 217, 0.22);
+}
+
+.executeButton:disabled {
+    opacity: 0.65;
+
+    cursor: not-allowed;
+}
+
+/* HISTÓRICO */
+
+.historyActions {
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 8px;
+}
+
+.historyActions button {
+    min-height: 43px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 7px;
+
+    padding: 9px;
+
+    border: 2px solid var(--border);
+    border-radius: 11px;
+
+    background: white;
+    color: var(--text);
+
+    font-size: 12px;
+    font-weight: 700;
+
+    transition:
+        transform 150ms ease,
+        border-color 150ms ease,
+        background-color 150ms ease,
+        color 150ms ease;
+}
+
+.historyActions button:hover:not(:disabled) {
+    transform: translateY(-1px);
+
+    border-color:
+        rgba(101, 88, 217, 0.45);
+
+    background: var(--primary-light);
+
+    color: var(--primary);
+}
+
+.historyActions button:disabled {
+    opacity: 0.4;
+
+    cursor: not-allowed;
+}
+
+/* ÁREA PRINCIPAL */
+
+.simulatorMain {
+    min-width: 0;
+
+    display: grid;
+
+    gap: 15px;
+}
+
+/* FEEDBACK */
+
+.simulatorFeedback {
+    min-height: 78px;
+
+    display: flex;
+    align-items: flex-start;
+
+    gap: 13px;
+
+    padding: 17px 19px;
+
+    border: 2px solid transparent;
+    border-radius: var(--radius-medium);
+
+    box-shadow: var(--shadow-small);
+}
+
+.feedbackIcon {
+    width: 39px;
+    height: 39px;
+
+    flex-shrink: 0;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 11px;
+
+    background: white;
+}
+
+.simulatorFeedback strong {
+    display: block;
+
+    margin-top: 1px;
+
+    font-size: 15px;
+}
+
+.simulatorFeedback p {
+    margin: 5px 0 0;
+
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* INFO */
+
+.simulatorFeedback.info {
+    background: #f1efff;
+
+    border-color: #dcd6ff;
+}
+
+.simulatorFeedback.info .feedbackIcon {
+    color: var(--primary);
+}
+
+.simulatorFeedback.info strong {
+    color: var(--primary);
+}
+
+.simulatorFeedback.info p {
+    color: var(--text-secondary);
+}
+
+/* SUCESSO */
+
+.simulatorFeedback.success {
+    background: #edf9f0;
+
+    border-color: #c5e9ce;
+}
+
+.simulatorFeedback.success .feedbackIcon {
+    color: #3b854e;
+}
+
+.simulatorFeedback.success strong {
+    color: #307042;
+}
+
+.simulatorFeedback.success p {
+    color: #496f52;
+}
+
+/* ERRO */
+
+.simulatorFeedback.error {
+    background: #fff0f1;
+
+    border-color: #f0bcc1;
+
+    box-shadow:
+        0 0 0 4px
+        rgba(198, 67, 77, 0.05),
+        var(--shadow-small);
+}
+
+.simulatorFeedback.error .feedbackIcon {
+    color: #c6434d;
+}
+
+.simulatorFeedback.error strong {
+    color: #a9343e;
+}
+
+.simulatorFeedback.error p {
+    color: #82484d;
+}
+
+/* VISUALIZADOR */
+
+.visualizerCard {
+    min-height: 390px;
+
+    padding: 25px;
+
+    overflow: hidden;
+}
+
+.visualizerHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    gap: 20px;
+}
+
+.visualizerHeader > div {
+    display: flex;
+    flex-direction: column;
+
+    gap: 4px;
+}
+
+.visualizerHeader span {
+    color: var(--text-secondary);
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.visualizerHeader strong {
+    font-size: 18px;
+}
+
+.nodeCounter {
+    flex-shrink: 0;
+
+    padding: 7px 11px;
+
+    background: var(--primary-light);
+
+    border-radius: 999px;
+
+    color: var(--primary) !important;
+
+    font-size: 12px;
+    font-weight: 800 !important;
+}
+
+/* RESPONSIVO */
+
+@media (max-width: 900px) {
+    .simulatorWorkspace {
+        grid-template-columns: 1fr;
+    }
+
+    .operationPanel {
+        order: 1;
+    }
+
+    .simulatorMain {
+        order: 2;
+    }
+}
+
+@media (max-width: 550px) {
+    .simulatorPage {
+        padding:
+            24px
+            14px
+            60px;
+    }
+
+    .operationButtons {
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+    .historyActions {
+        grid-template-columns:
+            1fr;
+    }
+
+    .visualizerCard {
+        padding:
+            20px
+            14px;
+    }
+
+    .simulatorFeedback {
+        padding: 15px;
+    }
+}

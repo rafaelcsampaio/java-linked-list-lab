@@ -1,0 +1,184 @@
+.home {
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+
+    padding: 70px 24px;
+}
+
+.hero {
+    width: min(1050px, 100%);
+
+    text-align: center;
+}
+
+.heroBadge {
+    display: inline-flex;
+
+    padding: 9px 17px;
+
+    background: var(--primary-light);
+    color: var(--primary);
+
+    border-radius: 999px;
+
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.hero h1 {
+    margin: 24px 0 15px;
+
+    font-size: clamp(44px, 7vw, 74px);
+    line-height: 0.95;
+
+    letter-spacing: -4px;
+}
+
+.hero h1 span {
+    color: var(--primary);
+}
+
+.heroDescription {
+    max-width: 670px;
+
+    margin: 0 auto;
+
+    color: var(--text-secondary);
+
+    font-size: 18px;
+    line-height: 1.65;
+}
+
+.topics {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 20px;
+
+    margin-top: 60px;
+}
+
+.topicCard {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    gap: 20px;
+
+    padding: 26px;
+
+    border: 2px solid var(--border);
+
+    border-radius: var(--radius-medium);
+
+    background: var(--surface);
+
+    color: var(--text);
+
+    text-align: left;
+
+    box-shadow: var(--shadow-small);
+}
+
+.topicIcon {
+    width: 68px;
+    height: 68px;
+
+    flex-shrink: 0;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 20px;
+
+    font-size: 31px;
+}
+
+.topicCard strong {
+    display: block;
+
+    margin-bottom: 7px;
+
+    font-size: 20px;
+}
+
+.topicCard p {
+    margin: 0;
+
+    padding-right: 25px;
+
+    color: var(--text-secondary);
+
+    line-height: 1.5;
+}
+
+.arrow {
+    position: absolute;
+
+    right: 22px;
+
+    color: var(--text-secondary);
+
+    font-size: 23px;
+}
+
+.theory .topicIcon {
+    background: var(--yellow);
+}
+
+.simulator .topicIcon {
+    background: var(--green);
+}
+
+.code .topicIcon {
+    background: var(--blue);
+}
+
+.bonus .topicIcon {
+    background: var(--pink);
+}
+
+@media (max-width: 720px) {
+
+    .home {
+        padding: 45px 18px;
+    }
+
+    .hero h1 {
+        letter-spacing: -2.5px;
+    }
+
+    .topics {
+        grid-template-columns: 1fr;
+
+        margin-top: 42px;
+    }
+
+    .topicCard {
+        padding: 20px;
+    }
+
+}
+.homeFooter {
+    margin-top: 45px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 10px;
+
+    color: var(--text-secondary);
+
+    font-size: 13px;
+}
+
+@media (max-width: 600px) {
+    .homeFooter {
+        flex-wrap: wrap;
+    }
+}

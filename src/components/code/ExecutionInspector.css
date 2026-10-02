@@ -1,0 +1,173 @@
+.executionInspector {
+    display: grid;
+    gap: 13px;
+}
+
+.executionExplanation p {
+    margin: 0;
+
+    color: var(--text-secondary);
+
+    font-size: 13px;
+    line-height: 1.55;
+}
+
+.conditionResult {
+    width: fit-content;
+
+    margin-top: 10px;
+
+    display: inline-flex;
+    align-items: center;
+
+    gap: 6px;
+
+    padding: 6px 9px;
+
+    border-radius: 8px;
+
+    font-family: monospace;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.conditionResult.true {
+    background: #edf9f0;
+    color: #34794a;
+}
+
+.conditionResult.false {
+    background: #fff0f1;
+    color: #b83d47;
+}
+
+.variablePanel {
+    padding: 13px;
+
+    background: rgba(255, 255, 255, 0.72);
+
+    border: 1px solid #dcd7ff;
+    border-radius: 12px;
+}
+
+.variablePanelTitle {
+    display: flex;
+    align-items: center;
+
+    gap: 7px;
+
+    margin-bottom: 10px;
+
+    color: var(--primary);
+
+    font-size: 11px;
+    font-weight: 800;
+
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+}
+
+.variableGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 7px;
+}
+
+.variableItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 7px 9px;
+
+    background: white;
+
+    border-radius: 8px;
+}
+
+.variableItem span {
+    color: var(--text-secondary);
+
+    font-family: monospace;
+    font-size: 11px;
+}
+
+.variableItem strong {
+    color: var(--primary);
+
+    font-family: monospace;
+    font-size: 11px;
+}
+
+.iterationNavigation {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+
+    gap: 8px;
+}
+
+.iterationNavigation > span {
+    color: var(--text-secondary);
+
+    font-size: 11px;
+    font-weight: 700;
+
+    text-align: center;
+}
+
+.iterationNavigation button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 5px;
+
+    padding: 7px 9px;
+
+    border: 1px solid var(--border);
+    border-radius: 8px;
+
+    background: white;
+    color: var(--text);
+
+    font-size: 11px;
+    font-weight: 700;
+
+    transition:
+        border-color 150ms ease,
+        color 150ms ease,
+        background-color 150ms ease;
+}
+
+.iterationNavigation button:hover:not(:disabled) {
+    border-color: var(--primary);
+
+    background: var(--primary-light);
+
+    color: var(--primary);
+}
+
+.iterationNavigation button:disabled {
+    opacity: 0.35;
+
+    cursor: not-allowed;
+}
+
+@media (max-width: 500px) {
+    .variableGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .iterationNavigation {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .iterationNavigation > span {
+        grid-column: 1 / -1;
+        grid-row: 1;
+    }
+}

@@ -1,0 +1,136 @@
+.listNode {
+    position: relative;
+
+    width: 130px;
+
+    padding-top: 34px;
+
+    flex-shrink: 0;
+}
+
+.nodeIndex {
+    position: absolute;
+
+    top: 0;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    color: var(--text-secondary);
+
+    font-size: 13px;
+    font-weight: 600;
+
+    white-space: nowrap;
+}
+
+.nodeBody {
+    position: relative;
+
+    height: 92px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 3px solid var(--text);
+    border-radius: 22px;
+
+    box-shadow:
+        0 7px 0 rgba(41, 40, 57, 0.12),
+        var(--shadow-small);
+}
+
+.nodeBody.yellow {
+    background: #f8e08e;
+}
+
+.nodeBody.green {
+    background: #b9ecb8;
+}
+
+.nodeBody.blue {
+    background: #abd9ff;
+}
+
+.nodeBody.pink {
+    background: #f8bfd1;
+}
+
+.nodeBody.purple {
+    background: #d3c3ff;
+}
+
+.nodeValue {
+    color: var(--text);
+
+    font-size: 28px;
+    font-weight: 800;
+}
+
+.referenceDot {
+    position: absolute;
+
+    right: -9px;
+    top: 50%;
+
+    width: 16px;
+    height: 16px;
+
+    transform: translateY(-50%);
+
+    background: var(--primary);
+
+    border: 3px solid var(--text);
+    border-radius: 50%;
+
+    z-index: 2;
+}
+
+.headPointer {
+    position: absolute;
+
+    left: 50%;
+    bottom: calc(100% + 2px);
+
+    transform: translateX(-50%);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    color: var(--primary);
+
+    font-size: 14px;
+
+    pointer-events: none;
+}
+
+.headPointer span {
+    font-size: 20px;
+    line-height: 1;
+}
+
+.listNode.active .nodeBody {
+    box-shadow:
+        0 0 0 5px rgba(101, 88, 217, 0.15),
+        0 7px 0 rgba(41, 40, 57, 0.12);
+}
+
+.listNode.newNode .nodeBody {
+    animation: newNodePulse 700ms ease;
+}
+
+@keyframes newNodePulse {
+    0% {
+        transform: scale(0.85);
+    }
+
+    55% {
+        transform: scale(1.06);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}

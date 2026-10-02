@@ -1,0 +1,274 @@
+.linkedListVisualizer {
+    width: 100%;
+
+    overflow-x: auto;
+
+    padding: 60px 15px 35px;
+}
+
+.linkedListFlow {
+    width: max-content;
+    min-width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 12px;
+}
+
+.visualListItem {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+}
+
+.visualNodeWrapper {
+    position: relative;
+
+    flex-shrink: 0;
+}
+
+.visualNode {
+    position: relative;
+
+    width: 125px;
+    height: 82px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 3px solid var(--text);
+    border-radius: 21px;
+
+    color: var(--text);
+
+    box-shadow:
+        0 6px 0 rgba(41, 40, 57, 0.11),
+        var(--shadow-small);
+
+    transition:
+        box-shadow 180ms ease,
+        border-color 180ms ease;
+}
+
+.visualNode.yellow {
+    background: #f8e08e;
+}
+
+.visualNode.green {
+    background: #b9ecb8;
+}
+
+.visualNode.blue {
+    background: #abd9ff;
+}
+
+.visualNode.pink {
+    background: #f8bfd1;
+}
+
+.visualNode.purple {
+    background: #d3c3ff;
+}
+
+.visualNode strong {
+    max-width: 90px;
+
+    overflow: hidden;
+
+    font-size: 20px;
+    font-weight: 800;
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.visualReference {
+    position: absolute;
+
+    top: 50%;
+
+    width: 15px;
+    height: 15px;
+
+    transform: translateY(-50%);
+
+    background: var(--primary);
+
+    border: 3px solid var(--text);
+    border-radius: 50%;
+}
+
+.visualReference.right {
+    right: -9px;
+}
+
+.visualReference.left {
+    left: -9px;
+}
+
+.visualNode.active {
+    border-color: var(--primary);
+
+    box-shadow:
+        0 0 0 6px rgba(101, 88, 217, 0.14),
+        0 7px 0 rgba(41, 40, 57, 0.1);
+}
+
+.visualNode.new {
+    animation: newVisualNode 650ms ease;
+}
+
+@keyframes newVisualNode {
+    0% {
+        transform: scale(0.75);
+    }
+
+    55% {
+        transform: scale(1.08);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.visualPointerLabels {
+    position: absolute;
+
+    bottom: calc(100% + 9px);
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    display: flex;
+
+    gap: 14px;
+}
+
+.visualPointerLabels span {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    color: var(--primary);
+
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.visualPointerLabels small {
+    font-size: 17px;
+    line-height: 1;
+}
+
+.visualPointerLabels.both {
+    gap: 22px;
+}
+
+.visualPosition {
+    position: absolute;
+
+    top: calc(100% + 12px);
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    color: var(--text-secondary);
+
+    font-size: 11px;
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+.nodeConnection,
+.edgeArrow {
+    flex-shrink: 0;
+
+    color: #555267;
+}
+
+.visualNull {
+    flex-shrink: 0;
+
+    padding: 9px 13px;
+
+    background: white;
+
+    border: 2px solid var(--border);
+    border-radius: 999px;
+
+    color: var(--text-secondary);
+
+    font-family:
+        Consolas,
+        monospace;
+
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.linkedListEmpty {
+    min-height: 230px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 12px;
+
+    color: var(--text-secondary);
+}
+
+.emptyListPointer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    color: var(--primary);
+
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.emptyListPointer span {
+    font-size: 20px;
+}
+
+.emptyNull {
+    padding: 10px 15px;
+
+    background: white;
+
+    border: 2px solid var(--border);
+    border-radius: 999px;
+
+    color: var(--text-secondary);
+
+    font-family: monospace;
+    font-weight: 800;
+}
+
+.linkedListEmpty p {
+    margin: 0;
+}
+
+@media (max-width: 700px) {
+    .linkedListFlow {
+        justify-content: flex-start;
+    }
+
+    .visualNode {
+        width: 105px;
+        height: 74px;
+    }
+
+    .nodeConnection svg {
+        width: 43px;
+    }
+}
