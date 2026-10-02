@@ -1,4 +1,8 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import {
+    HashRouter,
+    Route,
+    Routes
+} from "react-router-dom";
 
 import Home from "./pages/Home/Home";
 import Theory from "./pages/Theory/Theory";
@@ -8,15 +12,34 @@ import Generics from "./pages/Generics/Generics";
 
 function App() {
     return (
-        <BrowserRouter>
+        <HashRouter>
             <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/teoria" element={<Theory />} />
-                <Route path="/simulador" element={<Simulator />} />
-                <Route path="/codigo" element={<CodeVisualizer />} />
-                <Route path="/generics" element={<Generics />} />
+                <Route
+                    path="/"
+                    element={<Home />}
+                />
+
+                <Route
+                    path="/teoria"
+                    element={<Theory />}
+                />
+
+                <Route
+                    path="/simulador"
+                    element={<Simulator />}
+                />
+
+                <Route
+                    path="/codigo"
+                    element={<CodeVisualizer />}
+                />
+
+                <Route
+                    path="/generics"
+                    element={<Generics />}
+                />
             </Routes>
-        </BrowserRouter>
+        </HashRouter>
     );
 }
 
