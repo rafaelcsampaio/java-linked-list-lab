@@ -1,4 +1,11 @@
 .backButton {
+    position: fixed;
+
+    top: 24px;
+    left: 24px;
+
+    z-index: 100;
+
     display: inline-flex;
     align-items: center;
 
@@ -8,7 +15,7 @@
 
     padding: 0 16px;
 
-    background: rgba(255, 255, 255, 0.82);
+    background: rgba(255, 255, 255, 0.88);
 
     border: 1.5px solid var(--border);
     border-radius: 14px;
@@ -20,6 +27,8 @@
     box-shadow:
         0 2px 6px rgba(41, 40, 57, 0.04),
         0 8px 22px rgba(41, 40, 57, 0.06);
+
+    backdrop-filter: blur(10px);
 
     transition:
         transform 160ms ease,
@@ -55,4 +64,17 @@
 
 .backButton:active {
     transform: translateY(0);
+}
+
+@media (max-width: 600px) {
+    .backButton {
+        top: 16px;
+        left: 16px;
+
+        min-height: 40px;
+
+        padding: 0 13px;
+
+        font-size: 13px;
+    }
 }

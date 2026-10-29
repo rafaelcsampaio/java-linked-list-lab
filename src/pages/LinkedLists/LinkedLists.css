@@ -1,0 +1,168 @@
+.linkedListsPage {
+    min-height: 100vh;
+
+    padding: 55px 24px 70px;
+}
+
+.linkedListsContainer {
+    width: min(1050px, 100%);
+
+    margin: 0 auto;
+}
+
+.linkedListsHeader {
+    max-width: 720px;
+
+    margin: 55px auto 0;
+
+    text-align: center;
+}
+
+.moduleBadge {
+    display: inline-flex;
+
+    padding: 8px 15px;
+
+    border-radius: 999px;
+
+    background: var(--yellow);
+    color: var(--text);
+
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.linkedListsHeader h1 {
+    margin: 23px 0 14px;
+
+    font-size: clamp(43px, 7vw, 70px);
+    line-height: 0.97;
+
+    letter-spacing: -3px;
+}
+
+.linkedListsHeader h1 span {
+    color: var(--primary);
+}
+
+.linkedListsHeader p {
+    max-width: 650px;
+
+    margin: 0 auto;
+
+    color: var(--text-secondary);
+
+    font-size: 17px;
+    line-height: 1.65;
+}
+
+.linkedListsTopics {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 20px;
+
+    margin-top: 55px;
+}
+
+.linkedTopicCard {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    gap: 19px;
+
+    padding: 25px;
+
+    border: 2px solid var(--border);
+
+    border-radius: var(--radius-medium);
+
+    background: var(--surface);
+    color: var(--text);
+
+    text-align: left;
+
+    box-shadow: var(--shadow-small);
+}
+
+.linkedTopicIcon {
+    width: 64px;
+    height: 64px;
+
+    flex-shrink: 0;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 19px;
+}
+
+.linkedTopicCard.theory .linkedTopicIcon {
+    background: var(--yellow);
+}
+
+.linkedTopicCard.simulator .linkedTopicIcon {
+    background: var(--green);
+}
+
+.linkedTopicCard.code .linkedTopicIcon {
+    background: var(--blue);
+}
+
+.linkedTopicCard.bonus .linkedTopicIcon {
+    background: var(--pink);
+}
+
+.linkedTopicCard strong {
+    display: block;
+
+    margin-bottom: 7px;
+
+    font-size: 19px;
+}
+
+.linkedTopicCard p {
+    margin: 0;
+
+    padding-right: 25px;
+
+    color: var(--text-secondary);
+
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.linkedTopicArrow {
+    position: absolute;
+
+    right: 21px;
+
+    color: var(--text-secondary);
+}
+
+@media (max-width: 720px) {
+    .linkedListsPage {
+        padding: 35px 18px 55px;
+    }
+
+    .linkedListsHeader {
+        margin-top: 42px;
+    }
+
+    .linkedListsHeader h1 {
+        letter-spacing: -2px;
+    }
+
+    .linkedListsTopics {
+        grid-template-columns: 1fr;
+
+        margin-top: 40px;
+    }
+
+    .linkedTopicCard {
+        padding: 20px;
+    }
+}

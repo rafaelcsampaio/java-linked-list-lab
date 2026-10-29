@@ -5,6 +5,7 @@ import {
 } from "react-router-dom";
 
 import Home from "./pages/Home/Home";
+import LinkedLists from "./pages/LinkedLists/LinkedLists";
 import Theory from "./pages/Theory/Theory";
 import Simulator from "./pages/Simulator/Simulator";
 import CodeVisualizer from "./pages/CodeVisualizer/CodeVisualizer";
@@ -17,6 +18,11 @@ function App() {
                 <Route
                     path="/"
                     element={<Home />}
+                />
+
+                <Route
+                    path="/listas"
+                    element={<LinkedLists />}
                 />
 
                 <Route
