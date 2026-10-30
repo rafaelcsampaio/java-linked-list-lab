@@ -1,3 +1,5 @@
+import ExecutionPlayer from "../../components/execution/ExecutionPlayer";
+import useExecutionPlayer from "../../components/execution/useExecutionPlayer";
 import { useState } from "react";
 import { motion } from "motion/react";
 import {
@@ -56,6 +58,7 @@ const operations = {
 };
 
 function Simulator() {
+    const player = useExecutionPlayer();
     const [listType, setListType] =
         useState("simple");
 
@@ -74,16 +77,16 @@ function Simulator() {
     const [history, setHistory] =
         useState([]);
 
-    const [activeIndexes, setActiveIndexes] =
+    const [storedActiveIndexes, setActiveIndexes] =
         useState([]);
 
     const [newIndex, setNewIndex] =
         useState(null);
 
-    const [isTraversing, setIsTraversing] =
-        useState(false);
+    const isTraversing = player.frames.length > 0 &&
+        (player.playing || player.index < player.frames.length - 1);
 
-    const [feedback, setFeedback] =
+    const [storedFeedback, setFeedback] =
         useState({
             type: "info",
             message:
@@ -95,6 +98,9 @@ function Simulator() {
             value: false,
             position: false
         });
+
+    const activeIndexes = player.frame?.activeIndexes ?? storedActiveIndexes;
+    const feedback = player.frame?.feedback ?? storedFeedback;
 
     const currentOperation =
         operations[operation];
@@ -129,6 +135,7 @@ function Simulator() {
             return;
         }
 
+        player.clear();
         setOperation(nextOperation);
 
         setActiveIndexes([]);
@@ -153,6 +160,7 @@ function Simulator() {
             return;
         }
 
+        player.clear();
         setListType(type);
 
         setActiveIndexes([]);
@@ -403,67 +411,30 @@ function Simulator() {
         );
     }
 
-    async function traverseList() {
-        if (
-            values.length === 0
-        ) {
-            showFeedback(
-                "A lista está vazia. Não existem nós para percorrer.",
-                "error"
-            );
-
+    function traverseList() {
+        if (!values.length) {
+            showFeedback("A lista está vazia. Não existem nós para percorrer.", "error");
             return;
         }
-
-        setIsTraversing(true);
         setNewIndex(null);
-
-        for (
-            let index = 0;
-            index < values.length;
-            index++
-        ) {
-            setActiveIndexes([
-                index
-            ]);
-
-            showFeedback(
-                `Visitando "${values[index]}" na posição ${index}.`,
-                "info"
-            );
-
-            await new Promise(
-                (resolve) =>
-                    setTimeout(
-                        resolve,
-                        700
-                    )
-            );
-        }
-
-        setActiveIndexes(
-            values.map(
-                (_, index) =>
-                    index
-            )
-        );
-
-        showFeedback(
-            `Percurso concluído. Visitamos ${values.length} nó${
-                values.length === 1
-                    ? ""
-                    : "s"
-            } e chegamos a null.`,
-            "success"
-        );
-
-        setIsTraversing(false);
+        player.load([
+            { activeIndexes: [], feedback: { type: "info", message: "O percurso começa em inicio." } },
+            ...values.map((value, index) => ({
+                activeIndexes: [index],
+                feedback: { type: "info", message: `Visitando "${value}" na posição ${index}.` }
+            })),
+            { activeIndexes: values.map((_, index) => index), feedback: {
+                type: "success", message: `Percurso concluído. Visitamos ${values.length} nós e chegamos a null.`
+            } }
+        ], true);
     }
 
-    async function executeOperation() {
+    function executeOperation() {
         if (isTraversing) {
             return;
         }
+
+        player.clear();
 
         if (
             operation === "insert"
@@ -489,13 +460,15 @@ function Simulator() {
             return;
         }
 
-        await traverseList();
+        traverseList();
     }
 
     function undo() {
         if (isTraversing) {
             return;
         }
+
+        player.clear();
 
         if (
             history.length === 0
@@ -537,6 +510,8 @@ function Simulator() {
         if (isTraversing) {
             return;
         }
+
+        player.clear();
 
         setValues([
             ...initialValues
@@ -771,7 +746,7 @@ function Simulator() {
                         />
 
                         {isTraversing
-                            ? "Percorrendo..."
+                            ? player.playing ? "Percorrendo..." : "Percurso pausado"
                             : "Executar operação"}
                     </button>
 
@@ -907,6 +882,15 @@ function Simulator() {
                                 newIndex
                             }
                         />
+                        {operation === "traverse" && (
+                            <ExecutionPlayer
+                                index={player.index}
+                                count={player.frames.length}
+                                playing={player.playing}
+                                onPlayPause={player.toggle}
+                                onSeek={player.seek}
+                            />
+                        )}
                     </section>
                 </div>
             </section>

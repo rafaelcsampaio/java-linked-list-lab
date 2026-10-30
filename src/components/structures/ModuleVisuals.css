@@ -1,0 +1,332 @@
+.moduleTheoryPage,
+.moduleSimulatorPage,
+.moduleCodePage,
+.moduleGenericsPage {
+    --module-accent: var(--primary);
+    --module-soft: var(--primary-light);
+}
+
+.moduleTheoryPage--stack,
+.moduleSimulatorPage--stack,
+.moduleCodePage--stack,
+.moduleGenericsPage--stack {
+    --module-accent: #3f8f5a;
+    --module-soft: #dff5e5;
+}
+
+.moduleTheoryPage--queue,
+.moduleSimulatorPage--queue,
+.moduleCodePage--queue,
+.moduleGenericsPage--queue {
+    --module-accent: #3f8fc7;
+    --module-soft: #e4f3ff;
+}
+
+.moduleTheoryPage--tree,
+.moduleSimulatorPage--tree,
+.moduleCodePage--tree,
+.moduleGenericsPage--tree {
+    --module-accent: #c67835;
+    --module-soft: #fff0df;
+}
+
+.moduleBadgeSoft {
+    background: var(--module-soft) !important;
+    color: var(--text) !important;
+    border: 1.5px solid rgba(41, 40, 57, 0.12);
+}
+
+.moduleTitleAccent {
+    color: var(--module-accent);
+    -webkit-text-stroke: 0.35px rgba(41, 40, 57, 0.42);
+    paint-order: stroke fill;
+}
+
+.modulePreviewShell {
+    min-height: 235px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-x: auto;
+    padding: 48px 24px 36px;
+    background:
+        radial-gradient(circle at center, rgba(101, 88, 217, 0.05), transparent 62%),
+        #faf9fd;
+    border: 2px solid var(--border);
+    border-radius: 22px;
+}
+
+.moduleHorizontalFlow {
+    min-width: max-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.modulePreviewItem {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.modulePreviewNodeWrap {
+    position: relative;
+    flex-shrink: 0;
+}
+
+.modulePreviewPointer {
+    position: absolute;
+    bottom: calc(100% + 9px);
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--primary);
+    font-size: 12px;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.modulePreviewPointer small {
+    font-size: 17px;
+    line-height: 1;
+}
+
+.moduleStackPreview {
+    width: 220px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 9px;
+}
+
+.moduleStackTopLabel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 4px;
+    color: var(--primary);
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.moduleStackTopLabel span {
+    font-size: 20px;
+    line-height: 1;
+}
+
+.moduleStackBase {
+    width: 160px;
+    height: 8px;
+    margin-top: 1px;
+    background: #4d4a63;
+    border-radius: 999px;
+}
+
+.moduleArrayVisual {
+    min-width: max-content;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 8px;
+}
+
+.moduleArrayCell {
+    position: relative;
+    width: 96px;
+    flex-shrink: 0;
+    padding-top: 42px;
+    padding-bottom: 27px;
+}
+
+.moduleArrayCell .visualNode {
+    width: 96px;
+    height: 72px;
+}
+
+.moduleArrayIndex {
+    position: absolute;
+    top: calc(100% - 18px);
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--text-secondary);
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.moduleArrayPointer {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--primary);
+    font-size: 11px;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.moduleArrayPointer small {
+    font-size: 17px;
+    line-height: 1;
+}
+
+.moduleTheoryFacts {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+}
+
+.moduleTheoryFact {
+    padding: 18px;
+    background: #f8f7fc;
+    border: 2px solid var(--border);
+    border-radius: 16px;
+}
+
+.moduleTheoryFact strong {
+    display: block;
+    margin-bottom: 6px;
+}
+
+.moduleTheoryFact p {
+    margin: 0;
+    color: var(--text-secondary);
+    line-height: 1.55;
+}
+
+.moduleSimulatorVisual {
+    min-height: 330px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-x: auto;
+    padding: 45px 28px;
+}
+
+.moduleHistoryBox {
+    margin-top: 14px;
+    padding: 15px;
+    background: #f8f7fc;
+    border: 2px solid var(--border);
+    border-radius: 15px;
+}
+
+.moduleHistoryBox > strong {
+    display: block;
+    margin-bottom: 9px;
+}
+
+.moduleHistoryList {
+    display: grid;
+    gap: 6px;
+}
+
+.moduleHistoryItem {
+    padding: 8px 10px;
+    background: white;
+    border-radius: 9px;
+    color: var(--text-secondary);
+    font-family: Consolas, monospace;
+    font-size: 11px;
+}
+
+.moduleCodePreview {
+    width: 100%;
+    min-height: 260px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-x: auto;
+    padding: 25px 15px;
+}
+
+.moduleGenericPreview {
+    min-height: 175px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-x: auto;
+}
+
+@media (max-width: 900px) {
+    .moduleTheoryFacts {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Shared Listas styles own cards, controls, typography and code. Only module
+   identity and structure-specific geometry are defined here. */
+.moduleHub--stack { --module-accent: #3f8f5a; --module-soft: #dff5e5; }
+.moduleHub--queue { --module-accent: #3f8fc7; --module-soft: #e4f3ff; }
+.moduleHub--tree { --module-accent: #c67835; --module-soft: #fff0df; }
+.moduleHub .linkedListsHeader h1 .moduleTitleAccent { color: var(--module-accent); }
+.moduleTheoryPage .theoryTip { margin-top: 22px; }
+.moduleTheoryPage .theorySection, .moduleGenericsPage .genericSection, .moduleCodePage .codeArea, .moduleCodePage .codeVisualization, .moduleSimulatorPage .operationPanel { min-width: 0; }
+.moduleTheoryPage pre, .moduleGenericsPage pre { white-space: pre-wrap; overflow-wrap: anywhere; }
+.moduleGenericsPage .genericCodeCard.large { min-height: 0; }
+.moduleGenericsPage .genericProblemGrid > *,
+.moduleGenericsPage .genericExperiment > *,
+.moduleGenericsPage .genericTransformation > *,
+.moduleTheoryPage .nodeTheoryGrid > *,
+.moduleTheoryPage .traversalGrid > * { min-width: 0; }
+.moduleGenericsPage .genericExperiment { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; }
+.moduleGenericsPage .genericTypeFlow { flex-wrap: wrap; }
+.moduleGenericsPage .genericMeaningExample { flex-wrap: wrap; }
+.moduleCodePage .javaCode { max-height: none; }
+.moduleCodePage .javaLine { white-space: pre-wrap; overflow-wrap: anywhere; }
+.moduleCodePage .javaLine code { min-width: 0; }
+.moduleCodePage .codeToolbar { flex-wrap: wrap; }
+.moduleCodePage .codeToolbarActions { flex-wrap: wrap; }
+.structureScenarioSelector { margin-top: 0; }
+.structureScenarioSelector label { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; color: var(--text-secondary); font-size: 13px; }
+.structureScenarioSelector select { max-width: 100%; padding: 10px; border: 2px solid var(--border); border-radius: 10px; background: white; color: var(--text); font: inherit; }
+.modulePreviewShell, .moduleSimulatorVisual, .moduleCodePreview, .moduleGenericPreview { max-width: 100%; min-width: 0; justify-content: safe center; }
+.modulePreviewShell > *, .moduleSimulatorVisual > *, .moduleCodePreview > *, .moduleGenericPreview > * { flex-shrink: 0; }
+.moduleGenericPreview { padding: 40px 12px 25px; }
+.moduleTheoryPage .modulePreviewShell { border-radius: 17px; }
+.moduleHorizontalFlow .listArrow { width: 44px; margin: 0; }
+.moduleHorizontalFlow .arrowPath { stroke: var(--primary); }
+.moduleHorizontalFlow .arrowTip { fill: var(--primary); }
+.structureTreeCanvas { position: relative; }
+.structureTreeCanvas > svg { position: absolute; inset: 0; }
+.structureTreePosition { position: absolute; transform: translate(-50%, -50%); }
+.structureTreePosition .visualNode { width: 100px; height: 64px; }
+.structureNodeCaption { position: absolute; top: calc(100% + 8px); left: 0; right: 0; text-align: center; color: var(--text-secondary); font-size: 11px; }
+.structureStackItem { position: relative; }
+.structureStackItem > small { position: absolute; left: calc(100% + 12px); top: 45%; white-space: nowrap; color: var(--text-secondary); font-size: 11px; }
+.moduleStackPreview { width: 255px; }
+.structureCircularQueue { max-width: none; }
+.structureCircularQueue .moduleArrayCell { width: 78px; }
+.structureCircularQueue .visualNode { width: 78px; height: 65px; }
+.moduleResidual { opacity: .38 !important; border-style: dashed; }
+.moduleResidual.active { opacity: .85 !important; }
+.structureCircularReturn { border: 3px solid var(--primary); border-top: 0; border-radius: 0 0 22px 22px; padding: 14px; color: var(--primary); font-size: 12px; font-weight: 800; text-align: center; }
+.structureVisualNote { color: var(--text-secondary); font-size: 12px; line-height: 1.6; overflow-wrap: anywhere; }
+.structureCircularQueue .structureVisualNote { max-width: 590px; }
+.structureCodeOutput { color: var(--yellow); padding: 0 20px; overflow-wrap: anywhere; }
+.moduleSimulatorPage .historyActions { margin-bottom: 18px; }
+.moduleSimulatorPage .moduleHistoryBox { margin-top: 0; }
+.moduleSimulatorPage .moduleHistoryList { padding-left: 24px; }
+.moduleSimulatorPage .moduleHistoryItem { font-size: 12px; }
+.moduleTheoryPage .connectionExplanationGrid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+.moduleTheoryPage .connectionCode pre { min-height: 0; }
+.moduleCodePage button:focus-visible, .moduleTheoryPage button:focus-visible, .moduleGenericsPage button:focus-visible, .moduleSimulatorPage button:focus-visible { outline: 3px solid var(--primary); outline-offset: 3px; }
+@media (max-width: 750px) {
+    .moduleTheoryPage .connectionExplanationGrid, .moduleGenericsPage .genericExperiment { grid-template-columns: 1fr; }
+    .moduleCodePage .codeVisualization { grid-row: auto; }
+    .modulePreviewShell, .moduleSimulatorVisual { padding-inline: 12px; }
+    .moduleTheoryPage .sectionHeading, .moduleGenericsPage .genericSectionHeading { gap: 12px; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .moduleSimulatorPage *, .moduleCodePage *, .moduleTheoryPage *, .moduleHub * { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}
+.moduleGenericsPage .genericExperimentCode { min-height: 0; }
+.moduleGenericsPage .genericExperiment { margin-top: 18px; }
+.moduleTheoryPage .theoryDiagram { justify-content: safe center; }
+.moduleTheoryPage .connectionLesson { min-width: 0; }
+.moduleCodePage .variableItem, .moduleTheoryPage .variableItem { flex-wrap: wrap; }

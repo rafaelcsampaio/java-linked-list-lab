@@ -1,3 +1,6 @@
+import ExecutionPlayer from "../../components/execution/ExecutionPlayer";
+import { buildLinkedListFrames } from "../../components/execution/buildLinkedListFrames";
+import useExecutionPlayer from "../../components/execution/useExecutionPlayer";
 import { useState } from "react";
 import { motion } from "motion/react";
 
@@ -5,7 +8,6 @@ import {
     CircleCheck,
     Code2,
     Info,
-    Play,
     RotateCcw,
     Undo2
 } from "lucide-react";
@@ -2201,44 +2203,44 @@ function getGenericFrame(
 }
 
 function CodeVisualizer() {
+    const player = useExecutionPlayer();
     const [listType, setListType] =
         useState("simple");
 
     const [scenarioKey, setScenarioKey] =
         useState("add");
 
-    const [activeLine, setActiveLine] =
+    const [storedActiveLine, setActiveLine] =
         useState(null);
 
-    const [values, setValues] =
+    const [storedValues, setValues] =
         useState([
             "Ana",
             "Bruno"
         ]);
 
     const [
-        activeIndexes,
+        storedActiveIndexes,
         setActiveIndexes
     ] = useState([]);
 
-    const [newIndex, setNewIndex] =
+    const [storedNewIndex, setNewIndex] =
         useState(null);
 
     const [
-        executionFrames,
+        storedExecutionFrames,
         setExecutionFrames
     ] = useState([]);
 
     const [
-        frameIndex,
+        storedFrameIndex,
         setFrameIndex
     ] = useState(0);
 
     const [history, setHistory] =
         useState([]);
 
-    const [isRunning, setIsRunning] =
-        useState(false);
+    const isRunning = player.playing;
 
     const code =
         listType === "simple"
@@ -2255,6 +2257,15 @@ function CodeVisualizer() {
         availableScenarios[
             scenarioKey
         ];
+
+    const playbackFrames = buildLinkedListFrames(scenario, event =>
+        getLineIndex(code, event.needle, event.occurrence || 1));
+    const values = player.frame ? player.frame.values : storedValues;
+    const activeIndexes = player.frame ? player.frame.activeIndexes : storedActiveIndexes;
+    const newIndex = player.frame ? player.frame.newIndex : storedNewIndex;
+    const activeLine = player.frame ? player.frame.line : storedActiveLine;
+    const executionFrames = player.frames.length ? player.frames : storedExecutionFrames;
+    const frameIndex = player.frames.length ? player.index : storedFrameIndex;
 
     const currentFrame =
         executionFrames[
@@ -2305,6 +2316,7 @@ function CodeVisualizer() {
             return;
         }
 
+        player.clear();
         const firstScenario =
             type === "simple"
                 ? "add"
@@ -2341,6 +2353,7 @@ function CodeVisualizer() {
             return;
         }
 
+        player.clear();
         const nextScenario =
             availableScenarios[key];
 
@@ -2393,6 +2406,16 @@ function CodeVisualizer() {
             return;
         }
 
+        const matchingFrames = playbackFrames
+            .map((frame, position) => ({ frame, position }))
+            .filter(item => item.frame.line === index);
+        if (matchingFrames.length) {
+            const next = matchingFrames.find(item => item.position > player.index)
+                ?? matchingFrames[0];
+            player.load(playbackFrames, false, next.position);
+            return;
+        }
+
         setHistory(
             (current) => [
                 ...current,
@@ -2400,6 +2423,7 @@ function CodeVisualizer() {
             ]
         );
 
+        player.clear();
         setActiveLine(index);
 
         const event =
@@ -2438,86 +2462,18 @@ function CodeVisualizer() {
         );
     }
 
-    async function runExample() {
-        if (isRunning) {
-            return;
-        }
-
-        setIsRunning(true);
-
+    function runExample() {
         setHistory([]);
+        player.load(playbackFrames, true);
+    }
 
-        setValues([
-            ...scenario
-                .initialValues
-        ]);
-
-        setActiveIndexes([]);
-        setNewIndex(null);
-
-        setExecutionFrames([]);
-        setFrameIndex(0);
-        setActiveLine(null);
-
-        await new Promise(
-            (resolve) =>
-                setTimeout(
-                    resolve,
-                    450
-                )
-        );
-
-        for (
-            const event of
-            scenario.events
-        ) {
-            const lineIndex =
-                getLineIndex(
-                    code,
-                    event.needle,
-                    event.occurrence ||
-                        1
-                );
-
-            setActiveLine(
-                lineIndex
-            );
-
-            setExecutionFrames(
-                event.frames
-            );
-
-            for (
-                let index = 0;
-                index <
-                event.frames.length;
-                index++
-            ) {
-                const frame =
-                    event.frames[index];
-
-                setFrameIndex(
-                    index
-                );
-
-                applyFrame(
-                    frame
-                );
-
-                await new Promise(
-                    (resolve) =>
-                        setTimeout(
-                            resolve,
-                            1050
-                        )
-                );
-            }
-        }
-
-        setIsRunning(false);
+    function seekPlayback(index) {
+        if (player.frames.length) player.seek(index);
+        else player.load(playbackFrames, false, index);
     }
 
     function previousFrame() {
+        if (player.frames.length) { player.seek(player.index - 1); return; }
         const nextIndex =
             Math.max(
                 0,
@@ -2536,6 +2492,7 @@ function CodeVisualizer() {
     }
 
     function nextFrame() {
+        if (player.frames.length) { player.seek(player.index + 1); return; }
         const nextIndex =
             Math.min(
                 executionFrames.length -
@@ -2561,6 +2518,8 @@ function CodeVisualizer() {
         ) {
             return;
         }
+
+        player.clear();
 
         const previous =
             history[
@@ -2604,6 +2563,7 @@ function CodeVisualizer() {
             return;
         }
 
+        player.clear();
         setValues([
             ...scenario
                 .initialValues
@@ -2709,25 +2669,6 @@ function CodeVisualizer() {
                         </div>
 
                         <div className="codeToolbarActions">
-                            <button
-                                className="runCodeButton"
-                                onClick={
-                                    runExample
-                                }
-                                disabled={
-                                    isRunning
-                                }
-                            >
-                                <Play
-                                    size={16}
-                                    fill="currentColor"
-                                />
-
-                                {isRunning
-                                    ? "Executando..."
-                                    : "Executar exemplo"}
-                            </button>
-
                             <button
                                 onClick={undo}
                                 disabled={
@@ -2856,6 +2797,14 @@ function CodeVisualizer() {
                         />
                     </div>
 
+                    <ExecutionPlayer
+                        index={player.index}
+                        count={playbackFrames.length}
+                        playing={player.playing}
+                        onPlayPause={() => player.frames.length ? player.toggle() : runExample()}
+                        onSeek={seekPlayback}
+                    />
+
                     <motion.div
                         key={`${activeLine}-${frameIndex}`}
                         className="codeExplanation"
@@ -2894,6 +2843,7 @@ function CodeVisualizer() {
 
                             {currentFrame ? (
                                 <ExecutionInspector
+                                    showNavigation={!player.frames.length}
                                     explanation={
                                         currentFrame.explanation
                                     }

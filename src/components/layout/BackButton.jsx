@@ -9,15 +9,15 @@ function BackButton() {
     return (
         <button
             className="backButton"
-            onClick={() => navigate("/")}
-            aria-label="Voltar para o início"
+            onClick={() => navigate(-1)}
+            aria-label="Voltar para a página anterior"
         >
             <ArrowLeft
                 size={19}
                 strokeWidth={2.3}
             />
 
-            <span>Início</span>
+            <span>Voltar</span>
         </button>
     );
 }

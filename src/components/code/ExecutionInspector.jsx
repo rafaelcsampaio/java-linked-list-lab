@@ -14,6 +14,8 @@ function ExecutionInspector({
     condition = null,
     frameIndex = 0,
     frameCount = 1,
+    navigationDisabled = false,
+    showNavigation = true,
     onPrevious,
     onNext
 }) {
@@ -72,11 +74,11 @@ function ExecutionInspector({
                 </div>
             )}
 
-            {frameCount > 1 && (
+            {showNavigation && frameCount > 1 && (
                 <div className="iterationNavigation">
                     <button
                         onClick={onPrevious}
-                        disabled={frameIndex === 0}
+                        disabled={navigationDisabled || frameIndex === 0}
                     >
                         <ChevronLeft size={17} />
 
@@ -89,7 +91,7 @@ function ExecutionInspector({
 
                     <button
                         onClick={onNext}
-                        disabled={frameIndex === frameCount - 1}
+                        disabled={navigationDisabled || frameIndex === frameCount - 1}
                     >
                         Próxima
 
