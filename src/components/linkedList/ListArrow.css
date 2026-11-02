@@ -1,5 +1,6 @@
 .listArrow {
     width: 84px;
+    height: 24px;
 
     flex-shrink: 0;
 
@@ -17,9 +18,20 @@
     overflow: visible;
 }
 
+.listArrow--vertical {
+    width: 24px;
+    height: 40px;
+
+    margin: 0;
+}
+
+.listArrow--vertical svg {
+    height: 100%;
+}
+
 .arrowPath {
     stroke: #4d4a63;
-    stroke-width: 3.2;
+    stroke-width: 3.4;
 
     stroke-linecap: round;
 }

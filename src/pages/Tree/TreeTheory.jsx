@@ -1,5 +1,6 @@
 import StructurePreview from "../../components/structures/StructurePreview";
 import StructureWalkthrough from "../../components/structures/StructureWalkthrough";
+import TreeConceptDiagram from "./TreeConceptDiagram";
 import { useState } from "react";
 import {
     CircleDot,
@@ -14,27 +15,43 @@ import "../../components/linkedList/LinkedListVisualizer.css";
 import "../../components/structures/ModuleVisuals.css";
 
 const concepts = {
-    subarvore: { title: "subárvore", description: "Um nó e todos os seus descendentes formam uma árvore. Uma floresta é um conjunto de árvores disjuntas." },
     raiz: {
-        title: "raiz",
-        description: "É o nó principal da árvore. No material da professora, a raiz está no nível 0."
+        title: "Raiz",
+        description: "A é a raiz da árvore e está no nível 0."
     },
+    subarvore: { title: "Subárvore", description: "A subárvore com raiz em B contém B e todos os seus descendentes: D, E, H e I." },
     grau: {
-        title: "grau",
-        description: "Indica o número de subárvores diretamente ligadas a um nó. Uma folha possui grau 0."
+        title: "Grau",
+        description: "B tem grau 2 porque possui dois filhos: D e E."
     },
     nivel: {
-        title: "nível",
-        description: "É o número de ligações existentes no caminho da raiz até o nó."
+        title: "Nível",
+        description: "O nível 0 contém A. Cada ligação para baixo aumenta o nível em uma unidade."
     },
     altura: {
-        title: "altura",
-        description: "É o nível mais alto existente na árvore. Se as folhas mais profundas estão no nível 2, a altura é 2."
+        title: "Altura",
+        description: "A altura da árvore é 3: o maior nível ocupado é 3, nos caminhos A → B → D → H e A → B → D → I."
     },
     folha: {
-        title: "folha",
-        description: "É um nó terminal: não possui subárvores/filhos e, portanto, possui grau 0."
+        title: "Folha",
+        description: "E, F, G, H e I são folhas porque não possuem filhos."
     }
+};
+
+const levelDescriptions = {
+    0: "Nível 0: A está na raiz, sem ligações percorridas a partir dela.",
+    1: "Nível 1: B e C estão a uma ligação da raiz A.",
+    2: "Nível 2: D, E, F e G estão a duas ligações da raiz.",
+    3: "Nível 3: H e I estão a três ligações da raiz."
+};
+
+const conceptLabels = {
+    raiz: "Raiz",
+    subarvore: "Subárvore",
+    grau: "Grau",
+    nivel: "Nível",
+    altura: "Altura",
+    folha: "Folha"
 };
 
 const traversals = {
@@ -55,22 +72,18 @@ const traversals = {
     }
 };
 
-function TreeDiagram() {
-    const root = { value: "A", children: [
-        { value: "B", children: [{ value: "D", children: [] }, { value: "E", children: [] }] },
-        { value: "C", children: [{ value: "F", children: [] }, { value: "G", children: [] }, { value: "H", children: [] }] }
-    ] };
-    return <StructurePreview mode="tree" state={{ root }} />;
-}
 function BinaryTreeDiagram() {
     return <StructurePreview mode="tree" values={[8, 4, 12]} />;
 }
 
 function TreeTheory() {
     const [concept, setConcept] = useState("raiz");
+    const [selectedLevel, setSelectedLevel] = useState(0);
     const [traversal, setTraversal] = useState("pre");
 
-    const selectedConcept = concepts[concept];
+    const selectedConcept = concept === "nivel"
+        ? { title: `Nível ${selectedLevel}`, description: levelDescriptions[selectedLevel] }
+        : concepts[concept];
     const selectedTraversal = traversals[traversal];
 
     return (
@@ -100,26 +113,43 @@ function TreeTheory() {
                         </div>
                     </div>
 
-                    <div className="theoryDiagram">
-                        <TreeDiagram />
+                    <div className="theoryDiagram treeIntroDiagram">
+                        <TreeConceptDiagram concept={concept} level={selectedLevel} />
                     </div>
 
                     <div className="conceptExplorer">
-                        <div className="conceptButtons">
+                        <div className="conceptButtons" role="group" aria-label="Selecione um conceito da árvore">
                             {Object.keys(concepts).map((key) => (
                                 <button
                                     type="button"
                                     key={key}
                                     className={concept === key ? "selected" : ""}
+                                    aria-pressed={concept === key}
                                     onClick={() => setConcept(key)}
                                 >
-                                    <CircleDot size={13} />
-                                    {key}
+                                    <CircleDot size={13} aria-hidden="true" />
+                                    {conceptLabels[key]}
                                 </button>
                             ))}
                         </div>
 
-                        <div className="conceptExplanation">
+                        {concept === "nivel" && (
+                            <div className="treeLevelControls" role="group" aria-label="Selecione o nível a destacar">
+                                <span>Nível:</span>
+                                {[0, 1, 2, 3].map((level) => (
+                                    <button
+                                        type="button"
+                                        key={level}
+                                        aria-pressed={selectedLevel === level}
+                                        onClick={() => setSelectedLevel(level)}
+                                    >
+                                        {level}
+                                    </button>
+                                ))}
+                            </div>
+                        )}
+
+                        <div className="conceptExplanation treeConceptExplanation" role="status" aria-live="polite" aria-atomic="true">
                             <strong>{selectedConcept.title}</strong>
                             <p>{selectedConcept.description}</p>
                         </div>

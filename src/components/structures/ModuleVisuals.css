@@ -133,6 +133,17 @@
     gap: 8px;
 }
 
+.queueCellConnector {
+    flex-shrink: 0;
+    align-self: center;
+    transform: translateY(7px);
+}
+
+.queueCellConnector .listArrow {
+    width: 16px;
+    margin: 0;
+}
+
 .moduleArrayCell {
     position: relative;
     width: 96px;
@@ -290,10 +301,9 @@
 .moduleGenericPreview { padding: 40px 12px 25px; }
 .moduleTheoryPage .modulePreviewShell { border-radius: 17px; }
 .moduleHorizontalFlow .listArrow { width: 44px; margin: 0; }
-.moduleHorizontalFlow .arrowPath { stroke: var(--primary); }
-.moduleHorizontalFlow .arrowTip { fill: var(--primary); }
 .structureTreeCanvas { position: relative; }
-.structureTreeCanvas > svg { position: absolute; inset: 0; }
+.structureTreeCanvas > svg { position: absolute; inset: 0; overflow: visible; }
+.structureTreeBranch { fill: none; stroke: #4d4a63; stroke-width: 3.2; }
 .structureTreePosition { position: absolute; transform: translate(-50%, -50%); }
 .structureTreePosition .visualNode { width: 100px; height: 64px; }
 .structureNodeCaption { position: absolute; top: calc(100% + 8px); left: 0; right: 0; text-align: center; color: var(--text-secondary); font-size: 11px; }

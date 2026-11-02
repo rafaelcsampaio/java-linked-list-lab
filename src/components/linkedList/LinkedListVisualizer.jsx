@@ -1,10 +1,6 @@
 import { AnimatePresence, motion } from "motion/react";
-import {
-    ArrowLeft,
-    ArrowLeftRight,
-    ArrowRight
-} from "lucide-react";
 
+import ListArrow from "./ListArrow";
 import "./LinkedListVisualizer.css";
 
 const tones = [
@@ -51,11 +47,9 @@ function LinkedListVisualizer({
                             null
                         </span>
 
-                        <ArrowLeft
-                            className="edgeArrow"
-                            size={42}
-                            strokeWidth={2}
-                        />
+                        <div className="edgeArrow">
+                            <ListArrow direction="left" />
+                        </div>
                     </>
                 )}
 
@@ -166,17 +160,7 @@ function LinkedListVisualizer({
 
                                 {!isLast && (
                                     <div className="nodeConnection">
-                                        {isDouble ? (
-                                            <ArrowLeftRight
-                                                size={54}
-                                                strokeWidth={2}
-                                            />
-                                        ) : (
-                                            <ArrowRight
-                                                size={54}
-                                                strokeWidth={2}
-                                            />
-                                        )}
+                                        <ListArrow direction={isDouble ? "both" : "right"} />
                                     </div>
                                 )}
                             </motion.div>
@@ -184,11 +168,9 @@ function LinkedListVisualizer({
                     })}
                 </AnimatePresence>
 
-                <ArrowRight
-                    className="edgeArrow"
-                    size={42}
-                    strokeWidth={2}
-                />
+                <div className="edgeArrow">
+                    <ListArrow direction="right" />
+                </div>
 
                 <span className="visualNull">
                     null

@@ -1,3 +1,4 @@
+import { Fragment } from 'react';
 import { motion } from 'motion/react';
 import ListArrow from '../linkedList/ListArrow';
 import '../linkedList/LinkedListVisualizer.css';
@@ -30,7 +31,7 @@ function TreeView({ root, active }) {
     const top = place(root);
     const width = Math.max(260, column * 130), height = Math.max(...nodes.map(n => n.y)) + 65;
     return <div className="structureTreeCanvas" style={{ width, height }}>
-        <svg width={width} height={height} aria-hidden="true">{edges.map(({ from, to }, index) => <path key={index} d={`M ${from.x} ${from.y + 30} L ${to.x} ${to.y - 30}`} fill="none" stroke="var(--primary)" strokeWidth="3.2" />)}</svg>
+        <svg width={width} height={height} aria-hidden="true">{edges.map(({ from, to }, index) => <path key={index} className="structureTreeBranch" d={`M ${from.x} ${from.y + 30} L ${to.x} ${to.y - 30}`} />)}</svg>
         {nodes.map(({ node, x, y, depth, path }) => <div key={path} className="structureTreePosition" style={{ left: x, top: y }}>
             {node === top.node && <div className="modulePreviewPointer">raiz<small>↓</small></div>}
             <VisualNode value={node.value} index={depth} active={active.includes(node.value)} />
@@ -49,16 +50,19 @@ export default function StructurePreview({ mode, values = [], labels = {}, activ
         return <div className="structureCircularQueue"><div className="moduleArrayVisual">{state.slots.map((value, index) => {
             const occupied = (index - state.inicio + size) % size < count;
             const pointers = [index === state.inicio && 'inicio', index === state.fim && 'fim'].filter(Boolean);
-            return <div className="moduleArrayCell" key={index}>
-                {pointers.length > 0 && <span className="moduleArrayPointer">{pointers.join(' / ')}<small>↓</small></span>}
-                <VisualNode value={value} index={index} active={activeIndexes.includes(index)} muted={!occupied} />
-                <span className="moduleArrayIndex">{index}{!occupied ? ' · livre' : ''}</span>
-            </div>;
+            return <Fragment key={index}>
+                <div className="moduleArrayCell">
+                    {pointers.length > 0 && <span className="moduleArrayPointer">{pointers.join(' / ')}<small>↓</small></span>}
+                    <VisualNode value={value} index={index} active={activeIndexes.includes(index)} muted={!occupied} />
+                    <span className="moduleArrayIndex">{index}{!occupied ? ' · livre' : ''}</span>
+                </div>
+                {index < size - 1 && <div className="queueCellConnector"><ListArrow /></div>}
+            </Fragment>;
         })}</div><div className="structureCircularReturn">← após {size - 1}, volte a 0 · (índice + 1) % {size}</div><p className="structureVisualNote">{size} posições · capacidade útil {size - 1}. Células esmaecidas estão fora da fila, mesmo que guardem um valor residual.</p></div>;
     }
     const items = state ? state.slots.slice(0, state.topo + 1) : values;
     if (mode === 'stack') return <div className="moduleStackPreview"><div className="moduleStackTopLabel">topo{state ? ` = ${state.topo}` : ''}<span>↓</span></div>
-        {items.length ? [...items].reverse().map((value, index) => { const original = items.length - 1 - index; return <div className="structureStackItem" key={original}><VisualNode value={value} index={original} active={activeIndexes.includes(original) || activeValues.includes(value)} />{state && <small>posição {original}</small>}</div>; }) : <span className="emptyNull">vazia</span>}
+        {items.length ? [...items].reverse().map((value, index) => { const original = items.length - 1 - index; return <Fragment key={original}><div className="structureStackItem"><VisualNode value={value} index={original} active={activeIndexes.includes(original) || activeValues.includes(value)} />{state && <small>posição {original}</small>}</div>{index < items.length - 1 && <ListArrow direction="down" />}</Fragment>; }) : <span className="emptyNull">vazia</span>}
         <div className="moduleStackBase" />{state && <small>base · capacidade {state.slots.length}</small>}</div>;
     const resolved = Object.keys(labels).length ? labels : { 0: items.length === 1 ? 'inicio / fim' : 'inicio', ...(items.length > 1 ? { [items.length - 1]: 'fim' } : {}) };
     return <div className="moduleHorizontalFlow">{items.map((value, index) => <div className="modulePreviewItem" key={index}><div className="modulePreviewNodeWrap">{resolved[index] && <div className="modulePreviewPointer">{resolved[index]}<small>↓</small></div>}<VisualNode value={value} index={index} active={activeIndexes.includes(index) || activeValues.includes(value)} /></div>{index < items.length - 1 && <ListArrow />}</div>)}</div>;
