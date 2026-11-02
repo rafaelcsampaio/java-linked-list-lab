@@ -188,8 +188,16 @@
 .nodeConnection,
 .edgeArrow {
     flex-shrink: 0;
+}
 
-    color: #555267;
+.nodeConnection .listArrow {
+    width: 54px;
+    margin: 0;
+}
+
+.edgeArrow .listArrow {
+    width: 42px;
+    margin: 0;
 }
 
 .visualNull {
@@ -268,7 +276,7 @@
         height: 74px;
     }
 
-    .nodeConnection svg {
+    .nodeConnection .listArrow {
         width: 43px;
     }
 }

@@ -1,0 +1,6 @@
+.hero h1 span,
+.linkedListsHeader h1 span,
+.moduleAccentText {
+    -webkit-text-stroke: 0.35px rgba(41, 40, 57, 0.42);
+    paint-order: stroke fill;
+}

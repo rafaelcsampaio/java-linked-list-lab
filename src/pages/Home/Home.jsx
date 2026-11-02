@@ -1,154 +1,153 @@
+import {
+    ArrowRight,
+    GitBranch,
+    Layers3,
+    Network,
+    Rows3
+} from "lucide-react";
+
 import { motion } from "motion/react";
 import { useNavigate } from "react-router-dom";
 
 import "./Home.css";
+import "./HomeModuleColors.css";
 
 function Home() {
     const navigate = useNavigate();
 
-    const topics = [
+    const structures = [
         {
-            icon: "📚",
-            title: "Aprender",
-            description: "Revise conceitos, nós, referências e diferenças entre as listas.",
-            className: "theory",
-            path: "/teoria"
+            icon: GitBranch,
+            title: "Listas Encadeadas",
+            description: "Nós, referências, listas simples e duplamente encadeadas.",
+            className: "linkedLists",
+            path: "/listas",
+            available: true
         },
         {
-            icon: "🧩",
-            title: "Visualizar",
-            description: "Execute operações e veja a estrutura mudar passo a passo.",
-            className: "simulator",
-            path: "/simulador"
+            icon: Layers3,
+            title: "Pilhas",
+            description: "Entenda LIFO, topo, push, pop e peek de forma visual.",
+            className: "stack",
+            path: "/pilhas",
+            available: true
         },
         {
-            icon: "💻",
-            title: "Entender o código",
-            description: "Explore o Java e veja o efeito de cada linha na lista.",
-            className: "code",
-            path: "/codigo"
+            icon: Rows3,
+            title: "Filas",
+            description: "Visualize FIFO, início, fim, enqueue e dequeue.",
+            className: "queue",
+            path: "/filas",
+            available: true
         },
         {
-            icon: "✨",
-            title: "Bônus: <T>",
-            description: "Entenda Generics e por que nossas listas utilizam tipos genéricos.",
-            className: "bonus",
-            path: "/generics"
+            icon: Network,
+            title: "Árvores",
+            description: "Explore hierarquia, árvores binárias, recursividade e percursos.",
+            className: "tree",
+            path: "/arvores",
+            available: true
         }
     ];
+
+    function handleStructure(structure) {
+        if (!structure.available) return;
+        navigate(structure.path);
+    }
 
     return (
         <main className="home">
             <section className="hero">
                 <motion.span
                     className="heroBadge"
-                    initial={{
-                        opacity: 0,
-                        y: -10
-                    }}
-                    animate={{
-                        opacity: 1,
-                        y: 0
-                    }}
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
                 >
-                    Estrutura de Dados
+                    Estruturas de Dados • Java
                 </motion.span>
 
                 <motion.h1
-                    initial={{
-                        opacity: 0,
-                        y: 15
-                    }}
-                    animate={{
-                        opacity: 1,
-                        y: 0
-                    }}
-                    transition={{
-                        delay: 0.1
-                    }}
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.1 }}
                 >
-                    Listas
-                    <span> Encadeadas</span>
+                    Data Structures
+                    <span> Lab</span>
                 </motion.h1>
 
                 <motion.p
                     className="heroDescription"
-                    initial={{
-                        opacity: 0
-                    }}
-                    animate={{
-                        opacity: 1
-                    }}
-                    transition={{
-                        delay: 0.2
-                    }}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.2 }}
                 >
-                    Revise listas simplesmente e duplamente encadeadas
-                    através de teoria visual, simulações e código Java interativo.
+                    Aprenda Estruturas de Dados visualmente através
+                    de teoria, simulações e código Java interativo.
                 </motion.p>
 
-                <section className="topics">
-                    {topics.map((topic, index) => (
-                        <motion.button
-                            key={topic.title}
-                            className={`topicCard ${topic.className}`}
-                            onClick={() => navigate(topic.path)}
-                            initial={{
-                                opacity: 0,
-                                y: 25
-                            }}
-                            animate={{
-                                opacity: 1,
-                                y: 0
-                            }}
-                            transition={{
-                                delay: 0.25 + index * 0.08
-                            }}
-                            whileHover={{
-                                y: -6,
-                                scale: 1.015
-                            }}
-                            whileTap={{
-                                scale: 0.98
-                            }}
-                        >
-                            <span className="topicIcon">
-                                {topic.icon}
-                            </span>
+                <motion.div
+                    className="sectionHeading"
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.25 }}
+                >
+                    <span className="sectionLabel">
+                        Explore os módulos
+                    </span>
 
-                            <div>
-                                <strong>
-                                    {topic.title}
-                                </strong>
+                    <div>
+                        <strong>
+                            Escolha uma estrutura para começar
+                        </strong>
 
-                                <p>
-                                    {topic.description}
-                                </p>
-                            </div>
+                        <p>
+                            Revise conceitos, visualize operações e acompanhe
+                            a implementação em Java passo a passo.
+                        </p>
+                    </div>
+                </motion.div>
 
-                            <span className="arrow">
-                                →
-                            </span>
-                        </motion.button>
-                    ))}
+                <section className="structures">
+                    {structures.map((structure, index) => {
+                        const Icon = structure.icon;
+
+                        return (
+                            <motion.button
+                                key={structure.title}
+                                type="button"
+                                className={`structureCard ${structure.className}`}
+                                onClick={() => handleStructure(structure)}
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.3 + index * 0.08 }}
+                                whileHover={{ y: -5, scale: 1.01 }}
+                                whileTap={{ scale: 0.98 }}
+                            >
+                                <div className="structureCardTop">
+                                    <span className="structureIcon">
+                                        <Icon size={28} strokeWidth={2} />
+                                    </span>
+                                </div>
+
+                                <div className="structureContent">
+                                    <strong>{structure.title}</strong>
+                                    <p>{structure.description}</p>
+                                </div>
+
+                                <span className="structureArrow">
+                                    <ArrowRight size={20} strokeWidth={2.3} />
+                                </span>
+                            </motion.button>
+                        );
+                    })}
                 </section>
 
                 <footer className="homeFooter">
-                    <span>
-                        Material de apoio à monitoria
-                    </span>
-
+                    <span>Material de apoio à monitoria</span>
                     <span>•</span>
-
-                    <span>
-                        Java
-                    </span>
-
+                    <span>Java</span>
                     <span>•</span>
-
-                    <span>
-                        Listas encadeadas
-                    </span>
+                    <span>Estruturas de Dados</span>
                 </footer>
             </section>
         </main>

@@ -1,0 +1,177 @@
+.treeConceptViewport {
+    width: 100%;
+    min-width: 0;
+    overflow-x: auto;
+}
+
+.treeConceptSvg {
+    display: block;
+    width: 100%;
+    min-width: 520px;
+    max-width: 720px;
+    height: auto;
+    margin: 0 auto;
+    overflow: visible;
+}
+
+.treeConceptBranch {
+    fill: none;
+    stroke: #4d4a63;
+    stroke-width: 3.2;
+    stroke-linecap: round;
+    transition: opacity 160ms ease, stroke 160ms ease, stroke-width 160ms ease;
+}
+
+.treeConceptBranch.is-highlighted {
+    stroke: var(--module-accent);
+    stroke-width: 4.5;
+}
+
+.treeConceptBranch.is-muted {
+    opacity: 0.24;
+}
+
+.treeConceptNode {
+    transition: opacity 160ms ease;
+}
+
+.treeConceptNode rect {
+    stroke: #4d4a63;
+    stroke-width: 3;
+    transition: stroke 160ms ease, stroke-width 160ms ease, filter 160ms ease;
+}
+
+.treeConceptNode--yellow rect {
+    fill: #f8e08e;
+}
+
+.treeConceptNode--green rect {
+    fill: #b9ecb8;
+}
+
+.treeConceptNode--blue rect {
+    fill: #abd9ff;
+}
+
+.treeConceptNode--pink rect {
+    fill: #f8bfd1;
+}
+
+.treeConceptNode--purple rect {
+    fill: #d3c3ff;
+}
+
+.treeConceptNode text,
+.treeConceptLevelLabel,
+.treeDegreeBadge text {
+    fill: var(--text);
+    font-family: inherit;
+    font-weight: 800;
+}
+
+.treeConceptNode text {
+    font-size: 18px;
+}
+
+.treeConceptNode.is-highlighted rect {
+    stroke: var(--module-accent);
+    stroke-width: 4;
+    filter: drop-shadow(0 2px 3px rgba(41, 40, 57, 0.2));
+}
+
+.treeConceptNode.is-muted {
+    opacity: 0.3;
+}
+
+.treeConceptLevelLabel {
+    fill: var(--text-secondary);
+    font-size: 12px;
+    font-weight: 700;
+    opacity: 0.65;
+}
+
+.treeConceptLevelLabel.is-selected {
+    fill: var(--module-accent);
+    font-size: 13px;
+    font-weight: 900;
+    opacity: 1;
+}
+
+.treeDegreeBadge rect {
+    fill: #fff0df;
+    stroke: var(--module-accent);
+    stroke-width: 1.5;
+}
+
+.treeDegreeBadge text {
+    font-size: 11px;
+}
+
+.treeLevelControls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin: 0 0 12px;
+}
+
+.treeLevelControls > span {
+    color: var(--text-secondary);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.treeLevelControls button {
+    min-width: 42px;
+    padding: 7px 11px;
+    border: 2px solid var(--border);
+    border-radius: 999px;
+    background: white;
+    color: var(--text-secondary);
+    font: inherit;
+    font-size: 13px;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.treeLevelControls button[aria-pressed="true"] {
+    border-color: var(--module-accent);
+    background: var(--module-soft);
+    color: var(--text);
+}
+
+.moduleTheoryPage--tree .conceptButtons button.selected,
+.moduleTheoryPage--tree .conceptButtons button:hover {
+    border-color: var(--module-accent);
+    background: var(--module-soft);
+    color: var(--text);
+}
+
+.moduleTheoryPage--tree .conceptExplanation {
+    border-left-color: var(--module-accent);
+}
+
+.moduleTheoryPage--tree .conceptExplanation strong {
+    color: var(--module-accent);
+}
+
+.moduleTheoryPage--tree .treeIntroDiagram {
+    display: block;
+    min-height: 0;
+    padding: 20px 16px;
+}
+
+@media (max-width: 540px) {
+    .treeConceptSvg {
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .treeConceptBranch,
+    .treeConceptNode,
+    .treeConceptNode rect {
+        transition: none;
+    }
+}

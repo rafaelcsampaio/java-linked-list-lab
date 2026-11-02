@@ -1,0 +1,61 @@
+.executionPlayer {
+    min-width: 0;
+    padding: 16px;
+    background: #f8f7fc;
+    border: 2px solid var(--border);
+    border-radius: 17px;
+    margin: 16px 0;
+}
+.executionPlayerProgress, .executionPlayerControls, .executionPlayerTransport {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+.executionPlayerProgress { color: var(--text-secondary); font-size: 11px; font-weight: 700; }
+.executionPlayerProgress label { color: var(--primary); }
+.executionPlayer .executionPlayerTimeline {
+    width: 100%;
+    height: 28px;
+    padding: 0;
+    margin: 8px 0 12px;
+    cursor: pointer;
+    accent-color: var(--primary);
+    border: none;
+    background: transparent;
+}
+.executionPlayerControls { flex-wrap: wrap; gap: 14px; }
+.executionPlayerTransport { justify-content: flex-start; gap: 5px; }
+.executionPlayerTransport button {
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 38px;
+    padding: 0;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: white;
+    color: var(--primary);
+}
+.executionPlayerTransport .executionPlayerPlay {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: var(--primary);
+    border-color: var(--primary);
+    color: white;
+    box-shadow: var(--shadow-small);
+}
+.executionPlayerTransport button:hover:not(:disabled) { box-shadow: var(--shadow-small); transform: translateY(-1px); }
+.executionPlayer button:disabled, .executionPlayer input:disabled { opacity: .4; cursor: not-allowed; }
+.executionPlayer .executionPlayerSpeed { display: flex; flex-direction: row; align-items: center; gap: 8px; color: var(--text-secondary); font-size: 11px; font-weight: 700; }
+.executionPlayerSpeed select { padding: 8px; background: white; border: 1px solid var(--border); border-radius: 9px; color: var(--primary); font: inherit; }
+.executionPlayer :is(button, input, select):focus-visible { outline: 3px solid var(--primary); outline-offset: 3px; }
+.executionPlayer p { margin: 12px 0 0; color: var(--text-secondary); font-size: 11px; line-height: 1.5; }
+.codeVisualization > .executionPlayer { margin-bottom: 18px; }
+@media (max-width: 400px) {
+    .executionPlayer { padding: 10px; }
+    .executionPlayerTransport { gap: 3px; }
+    .executionPlayerTransport button { width: 30px; }
+    .executionPlayerTransport .executionPlayerPlay { width: 42px; height: 42px; }
+}
